@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CALCULATOR APPLICATION</title>
+    <link rel="stylesheet" href="Calculator.css">
+    <!-- <script src="Calculator.js"></script> -->
+</head>
+
+<body>
+    <div id="container">
+        <div class="motherPnl">
+            <header>
+                <div class="icon_design">
+                    <img src="calculator (2).png" alt="calculator.png">
+                    <h5>CALCULATOR</h5>
+                    <span id="powerLight"></span>
+                </div>
+                <button id="background"><img id="image" src="night.png" alt="...." title="Dark/Light Mode"></button>
+            </header>
+            <form>
+                <input id="screen" type="text" name="screen" title="screen">
+                <div class="buttonSection">
+                    <div class="centeredButtons">
+                        <div class="functionButtons">
+                            <input id="power" type="button" value="" name="powerButton" title="Turn On/Off">
+                            <input id="ClearButton" type="button" value="Clr" name="ClearButton"
+                                onclick="screen.value=''">
+                            <input id="deleteButton" type="button" value="Del" name="deleteButton"
+                                onclick="screen.value=screen.value.toString().slice(0,-1)">
+                        </div>
+                        <div class="numberButtons">
+                            <input id="number9" type="button" value="9" name="number9" onclick="screen.value+='9'">
+                            <input id="number8" type="button" value="8" name="number8" onclick="screen.value+='8'">
+                            <input id="number7" type="button" value="7" name="number7" onclick="screen.value+='7'">
+                            <input id="number6" type="button" value="6" name="number6" onclick="screen.value+='6'">
+                            <input id="number5" type="button" value="5" name="number5" onclick="screen.value+='5'">
+                            <input id="number4" type="button" value="4" name="number4" onclick="screen.value+='4'">
+                            <input id="number3" type="button" value="3" name="number3" onclick="screen.value+='3'">
+                            <input id="number2" type="button" value="2" name="number2" onclick="screen.value+='2'">
+                            <input id="number1" type="button" value="1" name="number1" onclick="screen.value+='1 '">
+                        </div>
+                    </div>
+                    <div class="operationButton">
+                        <input id="devideButton" type="button" value="/" name="divideButton"
+                            onclick="screen.value+='/'">
+                        <input id="multiplyButton" type="button" value="*" name="multiplyButton"
+                            onclick="screen.value+='*'">
+                        <input id="subtractButton" type="button" value="-" name="subtractButton"
+                            onclick="screen.value+='-'">
+                        <input id="additionButton" type="button" value="+" name="additionButton"
+                            onclick="screen.value+='+'">
+                    </div>
+                </div>
+                <div class="bottomButtons">
+                    <input id="number0" type="button" value="0" name="number0" onclick="screen.value+='0'">
+                    <input id="dot" type="button" value="." name="dot" onclick="screen.value+='.'">
+                    <input id="equalButton" type="button" value="=" name="equalButton"
+                        onclick="screen.value = eval(screen.value)">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    let power = document.getElementById("power");
+    let screen = document.getElementById("screen");
+
+    //ADDS ALL BUTTONS TO A COLLECTION
+    const buttons = [
+        document.getElementById("ClearButton"), //0
+        document.getElementById("deleteButton"), //1
+        document.getElementById("divideButton"), //2
+        document.getElementById("multiplyButton"), //3
+        document.getElementById("subtractButton"), //4
+        document.getElementById("additionButton"), //5
+        document.getElementById("number9"), //6
+        document.getElementById("number8"), //7
+        document.getElementById("number7"), //8
+        document.getElementById("number6"), //9
+        document.getElementById("number5"), //10
+        document.getElementById("number4"), //11
+        document.getElementById("number3"), //12
+        document.getElementById("number2"), //13
+        document.getElementById("number1"), //14
+        document.getElementById("number0"), //15
+        document.getElementById("dot"), //16
+        document.getElementById("equalButton"), //17
+    ];
+
+    //Im trying to create function that enable the buttons of an turned-off calculator.
+    buttons.forEach((button) => (button.disabled = true));
+    let isPowerOn = false;
+    let light = document.getElementById("powerLight");
+
+    //CHANGES STATE OF THE CALCULATOR
+
+    document.addEventListener("DOMContentLoaded", () => {
+        power.addEventListener("click", function () {
+            alert("CLICKED");
+            if (isPowerOn == false) {
+                buttons.forEach((button) => (button.disabled = true));
+                isPowerOn = true;
+                screen.value = null;
+                light.style = "Background: red"; // Issue: Use 'background' instead of 'Background'
+            } else {
+                buttons.forEach((button) => (button.disabled = false));
+                isPowerOn = false;
+                light.style = "Background: green"; // Issue: Use 'background' instead of 'Background'
+            }
+        });
+    });
+
+    /**BACKGROUND CONTROL CODE .... VERY REDUNDANT BUT STILL LIKE TO SEE IF I CAN PULL IT OFF**/
+    let backgroundControl = document.getElementById("background");
+    let imageControl = document.getElementById("image");
+    let isDarkModeOn = true;
+
+    //Elements to manipulate with color change....
+    let calculatorBody = document.getElementById("container");
+
+    document.addEventListener("DOMContentLoaded", function () {
+        backgroundControl.addEventListener("click", function () {
+            alert("Please");
+            if (isDarkModeOn == true) {
+                imageControl.src = "night.png";
+                controlCalculatorBackground(isDarkModeOn);
+                isDarkModeOn = false;
+            } else {
+                imageControl.src = "sun.png";
+                controlCalculatorBackground(isDarkModeOn);
+                isDarkModeOn = true;
+                calculatorBody.style = "Background: rgb(54,54,54)";
+                screen.style = "Background: rgba(54,54,54)";
+            }
+        });
+    });
+
+    function controlCalculatorBackground(backgroundState) {
+        if (backgroundState == true) {
+            calculatorBody.style = "Background: rgb(240,240,230)";
+            screen.style = "Background: rgba(240,240,230)";
+            screen.style.color = "rgb(54, 54, 54)";
+            buttons[0].style = "Background: rgb(230,230,220)";
+            buttons[1].style = "Background: rgb(230,230,220)";
+            buttons[6].style = "Background: rgba(230, 220, 220)";
+            buttons[6].style.color = "rgb(54, 54, 54)";
+            buttons[7].style = "Background: rgba(230, 220, 220)";
+            buttons[7].style.color = "rgb(54, 54, 54)";
+            buttons[8].style = "Background: rgba(230, 220, 220)";
+            buttons[8].style.color = "rgb(54, 54, 54)";
+            buttons[9].style = "Background: rgba(230, 220, 220)";
+            buttons[9].style.color = "rgb(54, 54, 54)";
+            buttons[10].style = "Background: rgba(230, 220, 220)";
+            buttons[10].style.color = "rgb(54, 54, 54)";
+            buttons[11].style = "Background: rgba(230, 220, 220)";
+            buttons[11].style.color = "rgb(54, 54, 54)";
+            buttons[12].style = "Background: rgba(230, 220, 220)";
+            buttons[12].style.color = "rgb(54, 54, 54)";
+            buttons[13].style = "Background: rgba(230, 220, 220)";
+            buttons[13].style.color = "rgb(54, 54, 54)";
+            buttons[14].style = "Background: rgba(230, 220, 220)";
+            buttons[14].style.color = "rgb(54, 54, 54)";
+            buttons[15].style = "Background: rgba(230, 220, 220)";
+            buttons[15].style.color = "rgb(54, 54, 54)";
+            buttons[16].style = "Background: rgba(230, 220, 220)";
+            buttons[16].style.color = "rgb(54, 54, 54)";
+        } else {
+            calculatorBody.style = "Background: rgb(240,240,230)";
+            screen.style = "Background: rgba(240,240,230)";
+            screen.style.color = "rgb(54, 54, 54)";
+            buttons[0].style = "Background: rgb(37, 37, 37)";
+            buttons[0].style.color = "rgb(205, 215, 215)";
+            buttons[1].style = "Background: rgb(37, 37, 37)";
+            buttons[1].style.color = "rgb(205, 215, 215)";
+            buttons[6].style = "Background: rgb(37, 37, 37)";
+            buttons[6].style.color = "rgb(230, 220, 220)";
+            buttons[7].style = "Background: rgb(37, 37, 37)";
+            buttons[7].style.color = "rgb(230, 220, 220)";
+            buttons[8].style = "Background: rgba(37, 37, 37)";
+            buttons[8].style.color = "rgb(230, 220, 220)";
+            buttons[9].style = "Background: rgba(37, 37, 37)";
+            buttons[9].style.color = "rgb(230, 220, 220)";
+            buttons[10].style = "Background: rgba(37, 37, 37)";
+            buttons[10].style.color = "rgb(rgb(230, 220, 220)";
+            buttons[11].style = "Background: rgba(37, 37, 37)";
+            buttons[11].style.color = "rgb(rgb(230, 220, 220)";
+            buttons[12].style = "Background: rgba(37, 37, 37)";
+            buttons[12].style.color = "rgb(rgb(230, 220, 220)";
+            buttons[13].style = "Background: rgba(37, 37, 37)";
+            buttons[13].style.color = "rgb(rgb(230, 220, 220)";
+            buttons[14].style = "Background: rgba(37, 37, 37)";
+            buttons[14].style.color = "rgb(rgb(230, 220, 220)";
+            buttons[15].style = "Background: rgba(37, 37, 37)";
+            buttons[15].style.color = "rgb(rgb(230, 220, 220)";
+            buttons[16].style = "Background: rgba(37, 37, 37)";
+            buttons[16].style.color = "rgb(rgb(230, 220, 220)";
+        }
+    }
+
+</script>
+
+</html>

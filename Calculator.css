@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+:root {
+  --mainColor: rgb(54, 54, 54);
+  --primaryColor: rgb(37, 37, 37);
+  --operationButtons: rgb(190, 123, 14);
+  --functionButtons: rgb(189, 189, 189);
+  --numberButtons: rgba(69, 67, 65);
+  --backgroundColor: rgba(35, 60, 49);
+}
+body {
+  background: var(--backgroundColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#container {
+  background-color: var(--mainColor);
+  border-top: 1px solid var(--functionButtons);
+  border-bottom: 2px solid var(--functionButtons);
+  border-radius: 35px;
+  padding: 4px;
+  margin-top: 150px; /* Wrong way to do this but some reason FLEX does'nt work.......*/
+  box-shadow: 2px 10px 10px rgb(102, 100, 100);
+}
+/* DECORATION */
+header {
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.icon_design {
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
+}
+h5 {
+  color: var(--operationButtons);
+}
+span {
+  width: 7px;
+  height: 7px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+/* BACKGROUND CONTROL */
+#background {
+  background: transparent;
+  border-radius: 50%;
+  object-fit: contain;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+/* MAIN CONTAINER, CALCULATOR PARAMETER*/
+.motherPnl {
+  /* border: 2px solid red; */
+  border-radius: 5px;
+  padding: 3px;
+}
+/* SCREEN CODE */
+input[name="screen"] {
+  height: 150px;
+  width: 300px;
+  border-radius: 12px;
+  background: var(--mainColor);
+  text-align: right;
+  color: rgb(240, 240, 230);
+  font-size: 65px;
+  padding: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+}
+/* BUTTON SECTION */
+.buttonSection {
+  /* border: 1px solid blue; */
+  border-radius: 12px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  column-gap: 5px;
+}
+/* CENTERED BUTTONS */
+.centeredButtons {
+  border-right: 2px solid var(--operationButtons);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+/* FUNCTION BUTTONS */
+.functionButtons {
+  /* border: 1px solid red; */
+  display: flex;
+  gap: 23px;
+  padding: 2px;
+}
+/* NUMBER BUTTONS */
+.numberButtons {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 63px);
+  padding: 4px;
+  /* border: 1px solid green; */
+}
+/* OPERATION BUTTONS */
+.operationButton {
+  /* border: 1px solid silver; */
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 4px;
+}
+/* BOTTOM BUTTONS */
+.bottomButtons {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+}
+/* BUTTON NUMBER0 */
+input[type="button"][value="0"][name="number0"] {
+  width: 120px;
+  height: 45px;
+  border-radius: 30px;
+  margin-top: 2.5px;
+}
+/* POWER BUTTON */
+input[name="powerButton"] {
+  background: url("power-off.png") no-repeat center;
+  /* background-size: cover;  */
+}
+/* BUTTONS */
+input {
+  height: 50px;
+  width: 50px;
+  font-size: 25px;
+  font-weight: 600;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+/* BUTTON COLORING */
+/* FUNCTION BUTTONS */
+input[name="ClearButton"],
+[name="deleteButton"] {
+  background-color: var(--functionButtons);
+}
+/* NUMBER BUTTON */
+input[name="number9"],
+[name="number8"],
+[name="number7"],
+[name="number7"],
+[name="number6"],
+[name="number5"],
+[name="number4"],
+[name="number3"],
+[name="number2"],
+[name="number1"],
+[name="dot"],
+[name="number0"] {
+  background-color: var(--primaryColor);
+  color: rgba(230, 220, 220);
+}
+
+/* OPERATION BUTTON */
+input[name="divideButton"],
+[name="multiplyButton"],
+[name="subtractButton"],
+[name="additionButton"],
+[name="equalButton"] {
+  background-color: var(--operationButtons);
+}
